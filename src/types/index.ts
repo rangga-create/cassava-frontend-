@@ -477,6 +477,10 @@ export interface Transaction extends BaseEntity {
 export interface ApiResponse<T> {
   success: boolean;
   data: T;
+  total?: number;
+  page?: number;
+  limit?: number;
+  totalPages?: number;
   message: string;
 }
 

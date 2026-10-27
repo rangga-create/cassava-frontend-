@@ -16,6 +16,12 @@ interface UseAuthReturn {
   clearError: () => void;
 }
 
+function getRedirectPath() {
+  if (typeof window === "undefined") return null;
+  const redirect = new URLSearchParams(window.location.search).get("redirect");
+  return redirect?.startsWith("/") && !redirect.startsWith("//") ? redirect : null;
+}
+
 export function useAuth(): UseAuthReturn {
   const [user, setUser] = useState<AuthUser | null>(null);
   const [loading, setLoading] = useState(true);
@@ -43,9 +49,10 @@ export function useAuth(): UseAuthReturn {
         authService.setAuthData(response.token, response.user);
         setUser(response.user);
 
-        // Redirect based on role
-        const role = response.user.role;
-        if (role === "CUSTOMER") {
+        const redirectPath = getRedirectPath();
+        if (redirectPath) {
+          router.push(redirectPath);
+        } else if (response.user.role === "CUSTOMER") {
           router.push("/customer");
         } else {
           router.push("/dashboard");
@@ -72,9 +79,10 @@ export function useAuth(): UseAuthReturn {
         authService.setAuthData(response.token, response.user);
         setUser(response.user);
 
-        // Redirect based on role
-        const role = response.user.role;
-        if (role === "CUSTOMER") {
+        const redirectPath = getRedirectPath();
+        if (redirectPath) {
+          router.push(redirectPath);
+        } else if (response.user.role === "CUSTOMER") {
           router.push("/customer");
         } else {
           router.push("/dashboard");

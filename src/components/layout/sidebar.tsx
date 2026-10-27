@@ -24,6 +24,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Bot,
+  MessageSquare,
 } from "lucide-react";
 
 interface NavItem {
@@ -50,6 +51,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: "Finance", href: "/finance", icon: <FileText className="h-[18px] w-[18px]" />, roles: ["OWNER", "ADMIN", "FINANCE"] },
   { label: "Analytics", href: "/analytics", icon: <BarChart3 className="h-[18px] w-[18px]" />, roles: ["OWNER", "ADMIN", "MANAGER"] },
   { label: "Export Contacts", href: "/export-contacts", icon: <Phone className="h-[18px] w-[18px]" />, roles: ["OWNER", "ADMIN"] },
+  { label: "Community", href: "/community", icon: <MessageSquare className="h-[18px] w-[18px]" /> },
   { label: "AI Assistant", href: "/ai", icon: <Bot className="h-[18px] w-[18px]" /> },
 ];
 

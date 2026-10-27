@@ -12,6 +12,7 @@ const PUBLIC_ROUTES = [
   "/shop",
   "/about",
   "/contact",
+  "/community",
 ];
 
 // ============================================
